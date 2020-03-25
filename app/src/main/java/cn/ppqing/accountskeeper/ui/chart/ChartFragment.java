@@ -1,4 +1,4 @@
-package cn.ppqing.accountskeeper.ui.home;
+package cn.ppqing.accountskeeper.ui.chart;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import cn.ppqing.accountskeeper.R;
 
-public class HomeFragment extends Fragment {
+public class ChartFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private ChartViewModel chartViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        chartViewModel =
+                ViewModelProviders.of(this).get(ChartViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_chart, container, false);
+        final TextView textView = root.findViewById(R.id.text_notifications);
+        chartViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
