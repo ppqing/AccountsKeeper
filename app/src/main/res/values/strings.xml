@@ -4,4 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_chart">Chart</string>
     <string name="title_user">User</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>
