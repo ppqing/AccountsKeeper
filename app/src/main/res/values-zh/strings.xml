@@ -7,4 +7,6 @@
     <string name="title_user">用户</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
+    <string name="button_upload">上传到云端</string>
+    <string name="button_download">从云端恢复</string>
 </resources>

@@ -6,4 +6,6 @@
     <string name="title_user">User</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="button_upload">upload to cloud</string>
+    <string name="button_download">download from cloud</string>
 </resources>
