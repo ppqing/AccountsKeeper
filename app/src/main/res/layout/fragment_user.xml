@@ -72,7 +72,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/activity_horizontal_margin_large"
-        android:inputType="textPassword"
         app:layout_constraintBaseline_toBaselineOf="@+id/textview_server"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
