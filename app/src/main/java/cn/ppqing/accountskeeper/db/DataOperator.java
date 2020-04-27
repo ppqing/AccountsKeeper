@@ -20,7 +20,7 @@ public class DataOperator {
         if(cursor.moveToFirst()){
             do{
                 int id=cursor.getInt(cursor.getColumnIndex("id"));
-                int costs=cursor.getInt(cursor.getColumnIndex("cost"));
+                int costs=cursor.getInt(cursor.getColumnIndex("costs"));
                 String kind=cursor.getString(cursor.getColumnIndex("kind"));
                 String method=cursor.getString(cursor.getColumnIndex("method"));
                 String date=cursor.getString(cursor.getColumnIndex("date"));

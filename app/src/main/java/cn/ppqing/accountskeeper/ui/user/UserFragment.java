@@ -11,8 +11,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import cn.ppqing.accountskeeper.Data;
 import cn.ppqing.accountskeeper.R;
+import cn.ppqing.accountskeeper.db.DataOperator;
 
 public class UserFragment extends Fragment {
 
@@ -33,6 +37,17 @@ public class UserFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         // TODO: Use the ViewModel
+
+        Button btn_download =getActivity().findViewById(R.id.button_download);
+        btn_download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Data d=new Data(1,"2","3","4");
+                DataOperator.addToDB(getContext(),d);
+                Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
 }
