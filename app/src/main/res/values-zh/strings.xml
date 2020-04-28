@@ -64,4 +64,6 @@
     <string name="button_upload">上传到云端</string>
     <string name="button_download">从云端恢复</string>
     <string name="server">服务器</string>
+    <string name="delete">删除</string>
+    <string name="edit">修改</string>
 </resources>

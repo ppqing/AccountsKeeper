@@ -21,6 +21,7 @@ public class Data {
         this.remarks = remarks;
     }
     public Data(int id,int costs,String kind,String method,String date,String remarks){
+        this.id=id;
         this.costs=costs;
         this.kind = kind;
         this.method = method;

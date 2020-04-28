@@ -162,11 +162,11 @@ public class DataOperator {
         List<Data> list = readFromDB(context);
         Date endDate=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String strEndDate=formatter.format(endDate);
         for (int i = 0; i < list.size(); i++){
             Data d=list.get(i);
             try {
-                Date date=formatter.parse(d.date);
-                if (date.compareTo(endDate)==0){
+                if (d.date.equals(strEndDate)){
                     cost[0]+=d.costs;
                     if(d.costs<0){
                         cost[2]+=d.costs;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.list.ListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <cn.ppqing.accountskeeper.ui.list.mRecyclerView
         android:id="@+id/recyclerview_list"
         android:layout_height="match_parent"
         android:layout_width="match_parent" />
