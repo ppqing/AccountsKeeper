@@ -11,6 +11,7 @@ buildscript {
             url 'https://maven.aliyun.com/repository/google'
         }
 
+        maven { url "https://jitpack.io" }
         google()
         jcenter()
         
