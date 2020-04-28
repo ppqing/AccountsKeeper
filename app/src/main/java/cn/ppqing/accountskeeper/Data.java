@@ -28,6 +28,10 @@ public class Data {
         this.date = date;
         this.remarks = remarks;
     }
+    public Data(int costs,String method){
+        this.costs=costs;
+        this.method = method;
+    }
     public void getmonth(){
     }
     public void getYear(){
