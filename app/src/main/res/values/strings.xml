@@ -69,7 +69,8 @@
     <string name="button_upload">upload to cloud</string>
     <string name="button_download">download from cloud</string>
     <string name="server">server</string>
-    <string name="delete">delete</string>
-    <string name="edit">edit</string>
+    <string name="select_dates">Select Dates:</string>
+    <string name="figure1">Consumption Kind Proportion</string>
+    <string name="figure2">Consumption Method Proportion</string>
 
 </resources>

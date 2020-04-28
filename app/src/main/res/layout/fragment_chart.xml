@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -20,7 +20,7 @@
             android:textSize="20sp"
             android:layout_marginTop="10dp"
             android:textColor="#0000ff"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Select Dates:"
+            android:text="@string/select_dates"
             android:textColor="#000000"
             android:textSize="15sp"/>
 
@@ -58,26 +58,19 @@
             android:id="@+id/HKD"
             android:layout_width="wrap_content"
             android:layout_height="54dp"
-            android:text="HKD"
+            android:text="@string/hkd"
             android:layout_gravity="right"/>
 
         <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pieChart"
+            android:id="@+id/pieChart1"
             android:layout_width="match_parent"
-            android:layout_height="277dp" />
-
-        <!--<TextView
-            android:id="@+id/Text3"
-            android:layout_width="397dp"
-            android:layout_height="50dp"
-            android:textAlignment="center"
-            android:text="Payment Method Proportion"
-            android:textSize="20sp"/>
+            android:layout_height="300dp" />
 
         <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart2"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/pieChart1"/>-->
+            android:layout_height="300dp" />
 
     </LinearLayout>
 </LinearLayout>
