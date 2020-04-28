@@ -130,13 +130,12 @@ public class DataOperator {
         int cost=0;
         List<Data> list = readFromDB(context);
         Date endDate=new Date();
-        Date startDate = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < list.size(); i++){
             Data d=list.get(i);
             try {
                 Date date=formatter.parse(d.date);
-                if (date.compareTo(startDate)>=0&&date.compareTo(endDate)<=0){
+                if (date.compareTo(endDate)==0){
                     cost+=d.costs;
                 }
             }catch (Exception e){
