@@ -35,7 +35,7 @@ public class Data {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         return formatter.format(date);
-    }
+}
 
    /* public void setDate(Date d){
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
