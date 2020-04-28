@@ -18,16 +18,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.util.*;
 import cn.ppqing.accountskeeper.db.DataOperator;
 
-public class OutcomeFragment extends Fragment {
+public class OutcomeFragment extends Fragment  {
 
     private OutcomeViewModel mViewModel;
     private int currency=0;
@@ -46,6 +47,8 @@ public class OutcomeFragment extends Fragment {
     private EditText cos_num;
     private EditText remarks_Text;
     private  String re;
+    private int year, month,day;
+    private StringBuffer date_s;
     public static OutcomeFragment newInstance() {
         return new OutcomeFragment();
     }
@@ -62,6 +65,8 @@ public class OutcomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(OutcomeViewModel.class);
+        initDateTime();
+        date_s = new StringBuffer();
         HKD = (CheckBox)getActivity().findViewById(R.id.check_hkd);
         CNY = (CheckBox)getActivity().findViewById(R.id.check_cny);
         cur = (ImageView)getActivity().findViewById(R.id.cur);
@@ -81,7 +86,48 @@ public class OutcomeFragment extends Fragment {
                 android.R.layout.simple_spinner_item , methods);
         spinner_type_outcome.setAdapter(adapter2);
         spinner_method_outcome.setAdapter(adapter3);
+
         // TODO: Use the ViewModel
+        date.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (date_s.length() > 0) { //清除上次记录的日期
+                            date_s.delete(0, date.length());
+                        }
+                       // Log.e("Date:",date_s.append(String.valueOf(day)).append("-").append(String.valueOf(month)).append("-").append(year).toString());
+                        month+=1;
+                        date.setText(date_s.append(String.valueOf(day)).append("-").append(String.valueOf(month)).append("-").append(year));
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                View dialogView = View.inflate(getContext(), R.layout.dialog_date, null);
+                final DatePicker datePicker = (DatePicker) dialogView.findViewById(R.id.datePicker);
+                dialog.setTitle("设置日期");
+                dialog.setView(dialogView);
+                dialog.show();
+                //初始化日期监听事件
+                datePicker.init(year, month -1, day, new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker view, int Year, int monthOfYear, int dayOfMonth) {
+                        year = Year;
+                        month = monthOfYear;
+                        day = dayOfMonth;
+                    }
+                });
+            }
+        });
+
         HKD.setOnClickListener(new OnClickListener(){
             @Override
             public void onClick(View v){
@@ -112,7 +158,6 @@ public class OutcomeFragment extends Fragment {
                     //alterDiaglog.setTitle(R.string.u);//文字
                     alterDiaglog.setMessage(R.string.unchecked);//提示消息
 
-                    //积极的选择
                     alterDiaglog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -127,7 +172,7 @@ public class OutcomeFragment extends Fragment {
 
                     int cos = 0-Integer.parseInt(cos_num.getText().toString());
                     re= remarks_Text.getText().toString();
-                    String d = Data.getDate();
+                    String d = date.getText().toString();
 
                     Data input = new Data(cos,get_type,get_method,d,re);
                     Log.e("checked",input.date);
@@ -170,7 +215,20 @@ public class OutcomeFragment extends Fragment {
                 });
 
 
-}}
+
+}
+    public void initDateTime() {
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH) ;
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+    }
+
+
+
+}
 
 
 

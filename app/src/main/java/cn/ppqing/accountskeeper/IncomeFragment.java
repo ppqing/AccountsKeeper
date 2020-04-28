@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -45,7 +46,8 @@ public class IncomeFragment extends Fragment {
     private EditText cos_num;
     private EditText remarks_Text;
     private  String re;
-
+    private int year, month,day;
+    private StringBuffer date_s;
     public static IncomeFragment newInstance() {
         return new IncomeFragment();
     }
@@ -59,6 +61,8 @@ public class IncomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initDateTime();
+        date_s = new StringBuffer();
         mViewModel = ViewModelProviders.of(this).get(IncomeViewModel.class);
         HKD = (CheckBox)getActivity().findViewById(R.id.check_hkd2);
         CNY = (CheckBox)getActivity().findViewById(R.id.check_cny2);
@@ -80,6 +84,45 @@ public class IncomeFragment extends Fragment {
         spinner_type_income.setAdapter(adapter1);
         spinner_method_income.setAdapter(adapter3);
         // TODO: Use the ViewModel
+        date.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setPositiveButton("设置", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (date_s.length() > 0) { //清除上次记录的日期
+                            date_s.delete(0, date.length());
+                        }
+                        // Log.e("Date:",date_s.append(String.valueOf(day)).append("-").append(String.valueOf(month)).append("-").append(year).toString());
+                        month+=1;
+                        date.setText(date_s.append(String.valueOf(day)).append("-").append(String.valueOf(month)).append("-").append(year));
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                View dialogView = View.inflate(getContext(), R.layout.dialog_date, null);
+                final DatePicker datePicker = (DatePicker) dialogView.findViewById(R.id.datePicker);
+                dialog.setTitle("设置日期");
+                dialog.setView(dialogView);
+                dialog.show();
+                //初始化日期监听事件
+                datePicker.init(year, month -1, day, new DatePicker.OnDateChangedListener() {
+                    @Override
+                    public void onDateChanged(DatePicker view, int Year, int monthOfYear, int dayOfMonth) {
+                        year = Year;
+                        month = monthOfYear;
+                        day = dayOfMonth;
+                    }
+                });
+            }
+        });
         HKD.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -125,8 +168,7 @@ public class IncomeFragment extends Fragment {
 
                     int cos = Integer.parseInt(cos_num.getText().toString());
                     re= remarks_Text.getText().toString();
-                    String d = Data.getDate();
-
+                    String d = date.getText().toString();
                     Data input = new Data(cos,get_type,get_method,d,re);
                     Log.e("checked",input.date);
                     DataOperator.addToDB(getContext(),input);
@@ -169,5 +211,12 @@ public class IncomeFragment extends Fragment {
 
         // TODO: Use the ViewModel
     }
+    public void initDateTime() {
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH) ;
+        day = calendar.get(Calendar.DAY_OF_MONTH);
 
+
+    }
 }
