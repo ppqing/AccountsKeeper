@@ -31,6 +31,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cn.ppqing.accountskeeper.Data;
@@ -77,6 +78,7 @@ public class ChartFragment extends Fragment {
                 android.R.layout.simple_spinner_item, dates);
         mSpinner.setAdapter(adapter);
 
+        final List<Data> dataList= DataOperator.readFromDB(getContext());
         mSpinner.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -103,20 +105,24 @@ public class ChartFragment extends Fragment {
 
         //画图
         PieChart pieChart = root.findViewById(R.id.pieChart);
-
-        List<Data> dataList= DataOperator.readFromDB(getContext());
+        //数据库读取数据
         List<PieEntry> entries = new ArrayList<>();
-
         for (int i = 0; i < dataList.size(); i++) {
             entries.add(new PieEntry(dataList.get(i).costs, dataList.get(i).kind));
         }
         PieDataSet dataSet = new PieDataSet(entries,"Label");
 
+        //添加色彩数据
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(0xff6633ff);
-        colors.add(0xffff3333);
+        ArrayList<Integer> colorList = new ArrayList<>(Arrays.asList(0xff6633ff,0xffff3333,
+                0xff333399,0xff33cc66,0xff9933cc,0xff330000));
+        for (int i = 0; i < dataList.size(); i++) {
+            colors.add(colorList.get(i));
+        }
         dataSet.setColors(colors);
         PieData pieData = new PieData(dataSet);
+
+        //设置百分比，添加文字注释
         pieData.setDrawValues(true);
         pieData.setValueFormatter(new PercentFormatter());
         pieData.setValueTextSize(16f);
@@ -130,7 +136,7 @@ public class ChartFragment extends Fragment {
 
         // 对齐方式：居中对齐
         description.setTextAlign(Paint.Align.CENTER);
-        // 获取屏幕中间x 轴dp值坐标
+        // 获取屏幕中间x轴dp值坐标
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(dm);
