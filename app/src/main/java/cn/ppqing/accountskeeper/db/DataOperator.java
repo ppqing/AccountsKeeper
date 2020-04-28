@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import cn.ppqing.accountskeeper.Data;
@@ -63,4 +66,87 @@ public class DataOperator {
         SQLiteDatabase sqLiteDatabase =dbHelper.getWritableDatabase();
         sqLiteDatabase.delete("List","id=?",new String[]{String.valueOf(id)});
     }
+    public static int getMonthCost(Context context){
+        int cost=0;
+        List<Data> list = readFromDB(context);
+        Date endDate=new Date();
+        Date startDate = new Date(endDate.getYear(),endDate.getMonth()-1,endDate.getDate());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        for (int i = 0; i < list.size(); i++){
+            Data d=list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate)>=0&&date.compareTo(endDate)<=0){
+                    cost+=d.costs;
+                }
+            }catch (Exception e){
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        return cost;
+    }
+
+    public static int getYearCost(Context context){
+        int cost=0;
+        List<Data> list = readFromDB(context);
+        Date endDate=new Date();
+        Date startDate = new Date(endDate.getYear()-1,endDate.getMonth(),endDate.getDate());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        for (int i = 0; i < list.size(); i++){
+            Data d=list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate)>=0&&date.compareTo(endDate)<=0){
+                    cost+=d.costs;
+                }
+            }catch (Exception e){
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        return cost;
+    }
+
+    public static int get3MonthsCost(Context context){
+        int cost=0;
+        List<Data> list = readFromDB(context);
+        Date endDate=new Date();
+        Date startDate = new Date(endDate.getYear(),endDate.getMonth()-3,endDate.getDate());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        for (int i = 0; i < list.size(); i++){
+            Data d=list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate)>=0&&date.compareTo(endDate)<=0){
+                    cost+=d.costs;
+                }
+            }catch (Exception e){
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        return cost;
+    }
+
+    public static int getTodayCost(Context context){
+        int cost=0;
+        List<Data> list = readFromDB(context);
+        Date endDate=new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        for (int i = 0; i < list.size(); i++){
+            Data d=list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(endDate)==0){
+                    cost+=d.costs;
+                }
+            }catch (Exception e){
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        return cost;
+    }
+
 }
