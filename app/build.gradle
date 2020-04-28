@@ -43,5 +43,6 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.thegrizzlylabs.sardine-android:sardine-android:0.6'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 
 }

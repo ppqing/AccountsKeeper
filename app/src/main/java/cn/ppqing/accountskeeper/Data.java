@@ -12,18 +12,20 @@ public class Data {
     public String kind;
     public String method;
     public String date;
-
-    public Data(int costs,String kind,String method,String date){
+    public String remarks;//备注
+    public Data(int costs,String kind,String method,String date,String remarks){
         this.costs=costs;
         this.kind = kind;
         this.method = method;
         this.date = date;
+        this.remarks = remarks;
     }
-    public Data(int id,int costs,String kind,String method,String date){
+    public Data(int id,int costs,String kind,String method,String date,String remarks){
         this.costs=costs;
         this.kind = kind;
         this.method = method;
         this.date = date;
+        this.remarks = remarks;
     }
     public void getmonth(){
     }

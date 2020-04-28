@@ -1,5 +1,6 @@
 package cn.ppqing.accountskeeper.ui.list;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.mViewHolder> {
         TextView textViewKind;
         TextView textViewMethod;
         TextView textViewDate;
+        TextView textViewRe;
 
         public mViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -29,6 +31,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.mViewHolder> {
             textViewKind=itemView.findViewById(R.id.list_item_kind);
             textViewMethod=itemView.findViewById(R.id.list_item_method);
             textViewDate=itemView.findViewById(R.id.list_item_date);
+            textViewRe=itemView.findViewById(R.id.list_item_remarks);
         }
     }
 
@@ -46,11 +49,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.mViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull mViewHolder holder, int position) {
-
+            Log.e("Date",data.get(position).date);
             holder.textViewCosts.setText("Cost: "+data.get(position).costs);
             holder.textViewMethod.setText("Method: "+data.get(position).method);
             holder.textViewKind.setText("Kind: "+data.get(position).kind);
             holder.textViewDate.setText("Date: "+data.get(position).date);
+            holder.textViewRe.setText("Note: "+data.get(position).remarks);
 
     }
 

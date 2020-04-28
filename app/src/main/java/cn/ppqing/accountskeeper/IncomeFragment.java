@@ -14,12 +14,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import cn.ppqing.accountskeeper.db.DataOperator;
 
 public class IncomeFragment extends Fragment {
 
@@ -34,6 +39,13 @@ public class IncomeFragment extends Fragment {
     private String [] methods;
     private String [] types_income;
     private TextView date;
+    private String get_type;
+    private String get_method;
+    private int get_costs;
+    private EditText cos_num;
+    private EditText remarks_Text;
+    private  String re;
+
     public static IncomeFragment newInstance() {
         return new IncomeFragment();
     }
@@ -54,6 +66,8 @@ public class IncomeFragment extends Fragment {
         Back = (Button)getActivity().findViewById(R.id.Cancel2);
         Submit = (Button)getActivity().findViewById(R.id.submit2);
         date = (TextView) getActivity().findViewById(R.id.Date2);
+        cos_num=(EditText)getActivity().findViewById(R.id.cost_num2);
+        remarks_Text=(EditText)getActivity().findViewById(R.id.Remarks_text2);
         date.setText(Data.getDate());
         Spinner spinner_type_income = (Spinner)getActivity().findViewById(R.id.type2);
         Spinner spinner_method_income = (Spinner)getActivity().findViewById(R.id.method2);
@@ -108,7 +122,16 @@ public class IncomeFragment extends Fragment {
 
                 }
                 else{
-                    Log.e("checked","yes");
+
+                    int cos = Integer.parseInt(cos_num.getText().toString());
+                    re= remarks_Text.getText().toString();
+                    String d = Data.getDate();
+
+                    Data input = new Data(cos,get_type,get_method,d,re);
+                    Log.e("checked",input.date);
+                    DataOperator.addToDB(getContext(),input);
+                    Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
+                    getActivity().finish();
                 }
             }
         });
@@ -119,7 +142,30 @@ public class IncomeFragment extends Fragment {
                 getActivity().finish();}
 
         });
-
+        spinner_type_income.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0,
+                                               View arg1, int arg2, long arg3) {
+                        int index = arg0.getSelectedItemPosition();
+                        get_type = types_income[index];
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                    }
+                });
+        spinner_method_income.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0,
+                                               View arg1, int arg2, long arg3) {
+                        int index = arg0.getSelectedItemPosition();
+                        get_method = methods[index];
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                    }
+                });
 
         // TODO: Use the ViewModel
     }

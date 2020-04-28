@@ -29,7 +29,8 @@ public class DBHelper extends SQLiteOpenHelper {
             +"costs integer,"
             +"kind text,"
             +"method text,"
-            +"date text)";
+            +"date text,"
+            +"remarks text)";
 
     private Context mContext;
     public DBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {

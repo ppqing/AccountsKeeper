@@ -24,7 +24,8 @@ public class DataOperator {
                 String kind=cursor.getString(cursor.getColumnIndex("kind"));
                 String method=cursor.getString(cursor.getColumnIndex("method"));
                 String date=cursor.getString(cursor.getColumnIndex("date"));
-                Data d=new Data(id,costs,kind,method,date);
+                String remarks=cursor.getString(cursor.getColumnIndex("remarks"));
+                Data d=new Data(id,costs,kind,method,date,remarks);
                 DataList.add(d);
             }while (cursor.moveToNext());
         }
@@ -40,7 +41,8 @@ public class DataOperator {
         values.put("costs",data.costs);
         values.put("kind",data.kind);
         values.put("method",data.method);
-        values.put("date",data.costs);
+        values.put("date",data.date);
+        values.put("remarks",data.remarks);
         sqLiteDatabase.insert("List",null,values);
     }
 
@@ -52,6 +54,7 @@ public class DataOperator {
         values.put("kind",data.kind);
         values.put("method",data.method);
         values.put("date",data.costs);
+        values.put("remarks",data.remarks);
         sqLiteDatabase.update("List",values,"id=?",new String[]{String.valueOf(id)});
     }
 

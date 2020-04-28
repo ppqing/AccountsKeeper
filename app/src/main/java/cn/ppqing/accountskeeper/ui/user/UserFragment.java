@@ -45,7 +45,7 @@ public class UserFragment extends Fragment {
         btn_download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Data d=new Data(1,"2","3","4");
+                Data d=new Data(1,"2","3","4","user");
                 DataOperator.addToDB(getContext(),d);
                 Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
             }
@@ -55,7 +55,7 @@ public class UserFragment extends Fragment {
         btn_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Data d=new Data(444,"666","777","333");
+                Data d=new Data(444,"666","777","333","up");
                 DataOperator.addToDB(getContext(),d);
                 Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
             }

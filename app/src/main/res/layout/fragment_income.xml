@@ -44,7 +44,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="46dp"
         android:layout_marginTop="10dp">
 
         <TextView
@@ -63,7 +63,8 @@
         <EditText
             android:id="@+id/cost_num2"
             android:layout_width="140dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintLeft_toRightOf="@+id/cost"
             app:layout_constraintTop_toTopOf="parent" />
 
