@@ -67,6 +67,7 @@ public class DataOperator {
         SQLiteDatabase sqLiteDatabase =dbHelper.getWritableDatabase();
         sqLiteDatabase.delete("List","id=?",new String[]{String.valueOf(id)});
     }
+
     public static int getMonthCost(Context context){
         int cost=0;
         List<Data> list = readFromDB(context);
@@ -92,12 +93,106 @@ public class DataOperator {
         }
         return cost;
     }
-    //cost[0] total cost,cost[1] income ,cost[2] outcome
-    public static int[] getYearCost(Context context){
-        int [] cost= new int[3];
+
+    public static List<Data> ThisMonthMethodCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.MONTH,-1);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
+                    if (d.method.equals("现金") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.method.equals("微信") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.method.equals("支付宝") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "现金");
+        Data b=new Data(cost_wechat, "微信");
+        Data c=new Data(cost_alipay, "支付宝");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
+
+    public static List<Data> ThisMonthKindCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.MONTH,-1);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
+                    if (d.kind.equals("饮食") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.kind.equals("理财") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.kind.equals("出行") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "饮食");
+        Data b=new Data(cost_wechat, "理财");
+        Data c=new Data(cost_alipay, "出行");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
+
+    public static int getYearCost(Context context){
+        int cost=0;
         List<Data> list = readFromDB(context);
         Date today=new Date();
-        Calendar endDate=Calendar.getInstance();;
+        Calendar endDate=Calendar.getInstance();
         endDate.setTime(today);
         Calendar startDate = Calendar.getInstance();
         startDate.setTime(today);
@@ -109,13 +204,7 @@ public class DataOperator {
             try {
                 Date date=formatter.parse(d.date);
                 if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
-                    cost[0]+=d.costs;
-                    if(d.costs<0){
-                        cost[2]+=d.costs;
-                    }
-                    else {
-                        cost[1]+=d.costs;
-                    }
+                    cost+=d.costs;
                 }
             }catch (Exception e){
                 Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
@@ -125,11 +214,107 @@ public class DataOperator {
         return cost;
     }
 
-    public static int [] get3MonthsCost(Context context){
-        int[] cost=new int[3];
+    public static List<Data> YearMethodCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.YEAR,-1);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
+                    if (d.method.equals("现金") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.method.equals("微信") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.method.equals("支付宝") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "现金");
+        Data b=new Data(cost_wechat, "微信");
+        Data c=new Data(cost_alipay, "支付宝");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
+
+    public static List<Data> YearKindCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.YEAR,-1);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
+                    if (d.kind.equals("饮食") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.kind.equals("理财") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.kind.equals("出行") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "饮食");
+        Data b=new Data(cost_wechat, "理财");
+        Data c=new Data(cost_alipay, "出行");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
+
+    public static int get3MonthsCost(Context context){
+        int cost=0;
         List<Data> list = readFromDB(context);
         Date today=new Date();
-        Calendar endDate=Calendar.getInstance();;
+        Calendar endDate=Calendar.getInstance();
         endDate.setTime(today);
         Calendar startDate = Calendar.getInstance();
         startDate.setTime(today);
@@ -141,13 +326,7 @@ public class DataOperator {
             try {
                 Date date=formatter.parse(d.date);
                 if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
-                    cost[0]+=d.costs;
-                    if(d.costs<0){
-                        cost[2]+=d.costs;
-                    }
-                    else {
-                        cost[1]+=d.costs;
-                    }
+                    cost+=d.costs;
                 }
             }catch (Exception e){
                 Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
@@ -157,23 +336,113 @@ public class DataOperator {
         return cost;
     }
 
-    public static int [] getTodayCost(Context context){
-        int [] cost= new int[3];
+    public static List<Data> TMonthsMethodCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.MONTH,-3);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
+                    if (d.method.equals("现金") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.method.equals("微信") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.method.equals("支付宝") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "现金");
+        Data b=new Data(cost_wechat, "微信");
+        Data c=new Data(cost_alipay, "支付宝");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
+
+    public static List<Data> TMonthsKindCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.MONTH,-3);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
+                    if (d.kind.equals("饮食") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.kind.equals("理财") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.kind.equals("出行") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "饮食");
+        Data b=new Data(cost_wechat, "理财");
+        Data c=new Data(cost_alipay, "出行");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
+
+    public static int getTodayCost(Context context){
+        int cost=0;
         List<Data> list = readFromDB(context);
         Date endDate=new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String strEndDate=formatter.format(endDate);
         for (int i = 0; i < list.size(); i++){
             Data d=list.get(i);
             try {
-                if (d.date.equals(strEndDate)){
-                    cost[0]+=d.costs;
-                    if(d.costs<0){
-                        cost[2]+=d.costs;
-                    }
-                    else {
-                        cost[1]+=d.costs;
-                    }
+                Date date=formatter.parse(d.date);
+                if (date.compareTo(endDate)==0){
+                    cost+=d.costs;
                 }
             }catch (Exception e){
                 Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
@@ -183,4 +452,87 @@ public class DataOperator {
         return cost;
     }
 
+    public static List<Data> TodayMethodCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date endDate=new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String strEndDate=formatter.format(endDate);
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                if (d.date.equals(strEndDate)){
+                    if (d.method.equals("现金") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.method.equals("微信") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.method.equals("支付宝") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "现金");
+        Data b=new Data(cost_wechat, "微信");
+        Data c=new Data(cost_alipay, "支付宝");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
+
+    public static List<Data> TodayKindCost(Context context){
+        int cost_cash =0, cost_wechat =0, cost_alipay =0;
+        List<Data> list = readFromDB(context);
+        List<Data> cost = new ArrayList<>();
+
+        Date endDate=new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        String strEndDate=formatter.format(endDate);
+
+        for (int i = 0; i < list.size(); i++) {
+            Data d = list.get(i);
+            try {
+                if (d.date.equals(strEndDate)){
+                    if (d.kind.equals("饮食") && d.costs<0) {
+                        cost_cash += -(d.costs);
+                    }
+                    if (d.kind.equals("理财") && d.costs<0) {
+                        cost_wechat += -(d.costs);
+                    }
+                    if (d.kind.equals("出行") && d.costs<0) {
+                        cost_alipay += -(d.costs);
+                    }
+                }
+            } catch (Exception e) {
+                Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+        Data a=new Data(cost_cash, "饮食");
+        Data b=new Data(cost_wechat, "理财");
+        Data c=new Data(cost_alipay, "出行");
+        if(cost_cash!=0){
+            cost.add(a);
+        }
+        if(cost_wechat!=0){
+            cost.add(b);
+        }
+        if(cost_alipay!=0){
+            cost.add(c);
+        }
+        return cost;
+    }
 }
