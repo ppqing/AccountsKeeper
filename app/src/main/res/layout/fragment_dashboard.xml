@@ -2,13 +2,16 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    android:id="@+id/dash_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/bg1"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+
+   >
 
 
     <ImageView
@@ -16,7 +19,8 @@
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@drawable/home"/>
+        android:background="@drawable/home"
+        android:visibility="invisible"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -32,6 +36,7 @@
             android:layout_marginRight="120dp"
             android:text="@string/Date"
             android:textSize="18sp"
+            android:textColor="#FFFFFF"
             app:layout_constraintRight_toLeftOf="@+id/hkd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,24 +48,25 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/Date_text"
             app:layout_constraintTop_toTopOf="parent"
-
+            android:textColor="#FFFFFF"
             />
 
         <TextView
             android:id="@+id/hkd"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="80dp"
-            android:text="@string/hkd"
+            android:text="CNY"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="#FFFFFF"/>
 
         <Switch
             android:id="@+id/ai_switch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
+            android:layout_width="40dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/hkd"
             app:layout_constraintTop_toTopOf="parent" />
@@ -72,22 +78,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:drawSelectorOnTop="true"/>
+        android:drawSelectorOnTop="true"
+        android:textColor="#FFFFFF"
+        />
 
     <TextView
         android:id="@+id/number"
         android:layout_width="275dp"
-        android:layout_height="245dp"
+        android:layout_height="227dp"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:text="Number"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="102dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="15dp">
 
         <TextView
@@ -96,41 +106,47 @@
             android:layout_marginTop="4dp"
             android:text="@string/XR"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/rate_num"
             android:layout_width="155dp"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:textColor="#FFFFFF"
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp">
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        >
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/MB"
+            android:text="@string/in"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="100dp"
+            android:id="@+id/in"
+            android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:textColor="#FFFFFF"
 
              />
 
@@ -138,22 +154,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="45dp"
         android:layout_marginTop="5dp">
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/OB"
+            android:text="@string/out"
+            android:textColor="#FFFFFF"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:layout_width="100dp"
+            android:id="@+id/out"
+            android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:textColor="#FFFFFF"
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

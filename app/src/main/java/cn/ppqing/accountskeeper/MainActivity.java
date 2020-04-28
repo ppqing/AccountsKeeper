@@ -100,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
     public void setRate(String str){
         this.Rate = str;
     }
-    public  String toValue(){
+   /* public  String toValue(){
         return  Data.rate;
-    }
+    }*/
     private void loadRate(){
         String path = "http://www.floatrates.com/daily/hkd.json";
         String val;
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onDataReceivedSuccess(String data) {
 
 
-                        Log.e("reveive",Data.rate);
+                        //Log.e("reveive",Data.rate);
                     }
                     @Override
                     public void onDataReceivedFailed() {

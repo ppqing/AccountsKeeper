@@ -2,11 +2,7 @@ package cn.ppqing.accountskeeper;
 import java.util.*;
 import java.text.SimpleDateFormat;
 public class Data {
-    public  static String rate="1.094";
-    public static void setA(String a) {
-        Data.rate = a;
-    }
-
+    public  static double rate=1.094;
     public int id=-1;
     public int costs;
     public String kind;
