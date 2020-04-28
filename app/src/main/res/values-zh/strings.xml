@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">港漂记账</string>
+    <string name="title_list">列表</string>
+    <string name="title_dashboard">首页</string>
+    <string name="title_chart">图表</string>
+    <string name="title_user">用户</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="Date">日期</string>
+    <string name="hkd">港币</string>
+    <string name="XR">汇率：</string>
+    <string name="MB">月预算：</string>
+    <string name="OB">总预算：</string>
+    <string-array name="time_array">
+        <item>本月</item>
+        <item>今日</item>
+        <item>三个月</item>
+        <item>今年</item>
+    </string-array>
+    <string name="in">收入</string>
+    <string name="out">支出</string>
+    <string name="new_bill">新帐单</string>
+
+    <string name="add_bill">添加一个新帐单.</string>
+    <string name="add_mention">请添加一个新帐单!</string>
+    <string name="kind">账单类别</string>
+    <string name="payment">支付方式</string>
+    <string name="submit">提交</string>
+    <string name="Cancel">取消</string>
+    <string name="Cost">金额</string>
+    <string name="unchecked">你还没有选择货币种类.</string>
+
+    <string-array name="Bill_type">
+        <item>饮食</item>
+        <item>理财</item>
+        <item>出行</item>
+        <item>服饰</item>
+        <item>娱乐</item>
+        <item>医疗</item>
+        <item>保健</item>
+        <item>充值缴费</item>
+        <item>酒店旅游</item>
+        <item>人情往来</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="method_type">
+        <item>现金</item>
+        <item>支付宝</item>
+        <item>支付宝HK</item>
+        <item>微信</item>
+        <item>信用卡</item>
+        <item>八达通</item>
+    </string-array>
+    <string-array name="Bill_type_income">
+        <item>生活费</item>
+        <item>工资</item>
+        <item>奖学金</item>
+        <item>红包收入</item>
+        <item>转账</item>
+        <item>其他</item>
+    </string-array>
+    <string name="remark">在这添加备注</string>
+</resources>
