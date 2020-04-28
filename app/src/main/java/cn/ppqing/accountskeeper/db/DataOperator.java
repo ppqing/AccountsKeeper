@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -69,14 +70,19 @@ public class DataOperator {
     public static int getMonthCost(Context context){
         int cost=0;
         List<Data> list = readFromDB(context);
-        Date endDate=new Date();
-        Date startDate = new Date(endDate.getYear(),endDate.getMonth()-1,endDate.getDate());
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();;
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.MONTH,-1);
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < list.size(); i++){
             Data d=list.get(i);
             try {
                 Date date=formatter.parse(d.date);
-                if (date.compareTo(startDate)>=0&&date.compareTo(endDate)<=0){
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
                     cost+=d.costs;
                 }
             }catch (Exception e){
@@ -90,14 +96,19 @@ public class DataOperator {
     public static int getYearCost(Context context){
         int cost=0;
         List<Data> list = readFromDB(context);
-        Date endDate=new Date();
-        Date startDate = new Date(endDate.getYear()-1,endDate.getMonth(),endDate.getDate());
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();;
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.YEAR,-1);
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < list.size(); i++){
             Data d=list.get(i);
             try {
                 Date date=formatter.parse(d.date);
-                if (date.compareTo(startDate)>=0&&date.compareTo(endDate)<=0){
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
                     cost+=d.costs;
                 }
             }catch (Exception e){
@@ -111,14 +122,19 @@ public class DataOperator {
     public static int get3MonthsCost(Context context){
         int cost=0;
         List<Data> list = readFromDB(context);
-        Date endDate=new Date();
-        Date startDate = new Date(endDate.getYear(),endDate.getMonth()-3,endDate.getDate());
+        Date today=new Date();
+        Calendar endDate=Calendar.getInstance();;
+        endDate.setTime(today);
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(today);
+        startDate.add(Calendar.MONTH,-3);
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         for (int i = 0; i < list.size(); i++){
             Data d=list.get(i);
             try {
                 Date date=formatter.parse(d.date);
-                if (date.compareTo(startDate)>=0&&date.compareTo(endDate)<=0){
+                if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
                     cost+=d.costs;
                 }
             }catch (Exception e){
