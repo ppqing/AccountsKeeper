@@ -67,4 +67,7 @@
     <string name="select_dates">日期选择:</string>
     <string name="figure1">消费类型分布</string>
     <string name="figure2">消费方式分布</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="title_activity_bills_main">账单</string>
 </resources>

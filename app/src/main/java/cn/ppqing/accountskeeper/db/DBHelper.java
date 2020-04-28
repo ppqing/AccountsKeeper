@@ -49,45 +49,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Toast.makeText(mContext,"数据库已更新",Toast.LENGTH_SHORT);
     }
 
-    public void writeToFile(List<Data> list){
-        FileOutputStream fileOutputStream=null;
-        BufferedWriter writer=null;
-        try {
-            fileOutputStream =mContext.openFileOutput("data.json",Context.MODE_PRIVATE);
-            Gson gson=new Gson();
-            String json=gson.toJson(list);
-            writer=new BufferedWriter(new OutputStreamWriter(fileOutputStream));
-            writer.write(json);
-            Log.d("json",json);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Log.e("file","打开文件失败");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("file","写入文件失败");
-        }finally {
-            try {
-                if(writer!=null){
-                    writer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void writeToFile(Context context){
-        try {
-            context.openFileOutput("data.json",Context.MODE_PRIVATE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Log.d("file","打开文件失败");
-        }
-    }
-
-    public void readFromFile(){
-
-    }
 
 
 }

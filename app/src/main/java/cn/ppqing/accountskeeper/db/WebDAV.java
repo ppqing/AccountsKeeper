@@ -55,11 +55,7 @@ public class WebDAV {
     }
 
 
-    public boolean readFile() throws IOException {
-        List<DavResource> resources = sardine.list(serverURL);
 
-        return true;
-    }
 
     public void updateFile(List<Data> list) throws IOException {
         //InputStream inputStream=new FileInputStream(fileName);

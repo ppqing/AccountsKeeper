@@ -28,11 +28,6 @@
     <string name="unchecked">You have not selected type of currency.</string>
     <string name="in">Income</string>
     <string name="out">Outcome</string>
-    <string name="title_activity_b_i_l_l_s">BILLS</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="title_activity_bills_total">Bills_total</string>
-    <string name="title_activity_bills_main">bills_main</string>
     <string-array name="Bill_type">
         <item>Diet</item>
         <item>Conduct financial transactions</item>
@@ -64,7 +59,6 @@
     </string-array>
     <string name="remark">Add note here</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="button_upload">upload to cloud</string>
     <string name="button_download">download from cloud</string>
@@ -72,5 +66,8 @@
     <string name="select_dates">Select Dates:</string>
     <string name="figure1">Consumption Kind Proportion</string>
     <string name="figure2">Consumption Method Proportion</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="title_activity_bills_main">Bills</string>
 
 </resources>
