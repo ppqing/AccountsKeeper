@@ -67,8 +67,8 @@ public class DataOperator {
         SQLiteDatabase sqLiteDatabase =dbHelper.getWritableDatabase();
         sqLiteDatabase.delete("List","id=?",new String[]{String.valueOf(id)});
     }
-    public static int getMonthCost(Context context){
-        int cost=0;
+    public static int [] getMonthCost(Context context){
+        int [] cost= new int[3];
         List<Data> list = readFromDB(context);
         Date today=new Date();
         Calendar endDate=Calendar.getInstance();;
@@ -83,7 +83,13 @@ public class DataOperator {
             try {
                 Date date=formatter.parse(d.date);
                 if (date.compareTo(startDate.getTime())>=0&&date.compareTo(endDate.getTime())<=0){
-                    cost+=d.costs;
+                    cost[0]+=d.costs;
+                    if(d.costs<0){
+                        cost[2]+=d.costs;
+                    }
+                    else {
+                        cost[1]+=d.costs;
+                    }
                 }
             }catch (Exception e){
                 Toast.makeText(context, "date parse failed", Toast.LENGTH_SHORT).show();
