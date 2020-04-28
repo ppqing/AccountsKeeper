@@ -38,7 +38,7 @@ public class WebDAV {
         }
         Log.d("webdav","server:"+serverURL+" last:"+last);
         this.serverURL=serverURL;
-        this.dirURL =serverURL+"ToDoList/";
+        this.dirURL =serverURL+"AccountsKeeper/";
         mContext=context;
     }
 

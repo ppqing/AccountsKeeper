@@ -76,7 +76,6 @@ public class ListFragment extends Fragment {
             case R.id.context_edit:
                 break;
             case R.id.context_delete:
-                Toast.makeText(getContext(), String.valueOf(menuInfo.position)+","+data.get(menuInfo.position).id, Toast.LENGTH_SHORT).show();
                 DataOperator.deleteFromDB(getContext(),data.get(menuInfo.position).id);
                 data.remove(menuInfo.position);
                 adapter.notifyItemRemoved(menuInfo.position);
