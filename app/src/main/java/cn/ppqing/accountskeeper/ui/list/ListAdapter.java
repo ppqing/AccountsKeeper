@@ -8,21 +8,31 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import java.util.List;
+
+import cn.ppqing.accountskeeper.Data;
 import cn.ppqing.accountskeeper.R;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.mViewHolder> {
-    private  String[] data;
+    private  List<Data> data;
 
     class mViewHolder extends RecyclerView.ViewHolder{
-        TextView textView;
+        TextView textViewCosts;
+        TextView textViewKind;
+        TextView textViewMethod;
+        TextView textViewDate;
 
         public mViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView=itemView.findViewById(R.id.list_item);
+            textViewCosts=itemView.findViewById(R.id.list_item_costs);
+            textViewKind=itemView.findViewById(R.id.list_item_kind);
+            textViewMethod=itemView.findViewById(R.id.list_item_method);
+            textViewDate=itemView.findViewById(R.id.list_item_date);
         }
     }
 
-    public ListAdapter(String[] data){
+    public ListAdapter(List<Data> data){
         this.data=data;
     }
 
@@ -36,12 +46,19 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.mViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull mViewHolder holder, int position) {
-            holder.textView.setText(data[position]);
+
+            holder.textViewCosts.setText("Cost: "+data.get(position).costs);
+            holder.textViewMethod.setText("Method: "+data.get(position).method);
+            holder.textViewKind.setText("Kind: "+data.get(position).kind);
+            holder.textViewDate.setText("Date: "+data.get(position).date);
+
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+
+        return data.size();
+
     }
 
 

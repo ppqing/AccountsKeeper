@@ -61,4 +61,7 @@
         <item>其他</item>
     </string-array>
     <string name="remark">在这添加备注</string>
+    <string name="button_upload">上传到云端</string>
+    <string name="button_download">从云端恢复</string>
+    <string name="server">服务器</string>
 </resources>

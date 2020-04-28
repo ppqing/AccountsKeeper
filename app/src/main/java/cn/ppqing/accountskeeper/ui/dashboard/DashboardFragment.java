@@ -1,5 +1,6 @@
 package cn.ppqing.accountskeeper.ui.dashboard;
 
+
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,11 +14,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+
 
 import cn.ppqing.accountskeeper.MainActivity;
 import cn.ppqing.accountskeeper.R;
@@ -28,11 +31,13 @@ public class DashboardFragment extends Fragment {
     private  TextView rate_num;
     private DashboardViewModel dashboardViewModel;
     private  String rates;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
         Bundle bundle = this.getArguments();
         Spinner spinner_date = root.findViewById(R.id.times);
         times = getResources().getStringArray(R.array.time_array);
@@ -65,4 +70,5 @@ public class DashboardFragment extends Fragment {
         Log.e("dh rate:",rates);
 
     }
+
 }

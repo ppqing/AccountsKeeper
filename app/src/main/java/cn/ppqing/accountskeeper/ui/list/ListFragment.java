@@ -15,7 +15,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import java.util.List;
+
+import cn.ppqing.accountskeeper.Data;
 import cn.ppqing.accountskeeper.R;
+import cn.ppqing.accountskeeper.db.DataOperator;
+
 
 public class ListFragment extends Fragment {
 
@@ -40,10 +46,9 @@ public class ListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager=new LinearLayoutManager(root.getContext());
 
-        String[] data=new String[20];
-        for(int i=0;i<20;i++){
-            data[i]=String.valueOf(i);
-        }
+
+        List<Data> data= DataOperator.readFromDB(getContext());
+
         adapter=new ListAdapter(data);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
