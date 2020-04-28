@@ -1,12 +1,73 @@
 <resources>
     <string name="app_name">Accounts Keeper</string>
     <string name="title_list">List</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_dashboard">Home</string>
     <string name="title_chart">Chart</string>
     <string name="title_user">User</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="Date">Date</string>
+    <string name="hkd">HKD</string>
+    <string name="XR">Exchange Rate：</string>
+    <string name="MB">Month Budget：</string>
+    <string name="OB">Over Budget：</string>
+    <string-array name="time_array">
+        <item>This month.</item>
+        <item>This day</item>
+        <item>Last 3 months</item>
+        <item>This year</item>
+    </string-array>
+    <string name="new_bill">New Bill</string>
+    <string name="add_bill">Add a new bill.</string>
+    <string name="add_mention">Please add a new bill!</string>
+    <string name="kind">Bill type</string>
+    <string name="payment">Payment method</string>
+    <string name="submit">Submit</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Cost">Amount of money</string>
+    <string name="unchecked">You have not selected type of currency.</string>
+    <string name="in">Income</string>
+    <string name="out">Outcome</string>
+    <string name="title_activity_b_i_l_l_s">BILLS</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_bills_total">Bills_total</string>
+    <string name="title_activity_bills_main">bills_main</string>
+    <string-array name="Bill_type">
+        <item>Diet</item>
+        <item>Conduct financial transactions</item>
+        <item>Trip</item>
+        <item>Clothing</item>
+        <item>entertainment</item>
+        <item>Medical care</item>
+        <item>Healthcare</item>
+        <item>Recharge payment</item>
+        <item>Hotel Tourism</item>
+        <item>Human relations</item>
+        <item>Else</item>
+    </string-array>
+    <string-array name="method_type">
+        <item>Cash</item>
+        <item>Alipay</item>
+        <item>Alipay HK</item>
+        <item>Wechat</item>
+        <item>Credit Card</item>
+        <item>Octopus</item>
+    </string-array>
+    <string-array name="Bill_type_income">
+        <item>living expenses</item>
+        <item>Salary</item>
+        <item>scholarship</item>
+        <item>Bonus income</item>
+        <item>Transfer accounts</item>
+        <item>Else</item>
+    </string-array>
+    <string name="remark">Add note here</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="button_upload">upload to cloud</string>
     <string name="button_download">download from cloud</string>
     <string name="server">server</string>
+
 </resources>

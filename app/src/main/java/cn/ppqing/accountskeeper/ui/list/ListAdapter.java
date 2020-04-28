@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import java.util.List;
 
 import cn.ppqing.accountskeeper.Data;
@@ -45,15 +46,19 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.mViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull mViewHolder holder, int position) {
+
             holder.textViewCosts.setText("Cost: "+data.get(position).costs);
             holder.textViewMethod.setText("Method: "+data.get(position).method);
             holder.textViewKind.setText("Kind: "+data.get(position).kind);
             holder.textViewDate.setText("Date: "+data.get(position).date);
+
     }
 
     @Override
     public int getItemCount() {
+
         return data.size();
+
     }
 
 
