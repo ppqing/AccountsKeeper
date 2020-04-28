@@ -47,6 +47,16 @@ public class UserFragment extends Fragment {
                 Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
             }
         });
+
+        Button btn_upload =getActivity().findViewById(R.id.button_upload);
+        btn_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Data d=new Data(444,"666","777","333");
+                DataOperator.addToDB(getContext(),d);
+                Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
