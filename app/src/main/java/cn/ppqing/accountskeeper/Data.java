@@ -28,6 +28,7 @@ public class Data {
         this.costs=costs;
         this.method = method;
     }
+
     public void getmonth(){
     }
     public void getYear(){

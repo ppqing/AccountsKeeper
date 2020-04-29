@@ -437,7 +437,7 @@ public class DataOperator {
         }
         Data a=new Data(cost_cash, "饮食");
         Data b=new Data(cost_wechat, "理财");
-        Data c=new Data(cost_alipay, "出行");
+        Data c=new Data(cost_cash, "出行");
         if(cost_cash!=0){
             cost.add(a);
         }

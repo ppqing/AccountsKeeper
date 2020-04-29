@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,7 @@ public class ChartFragment extends Fragment {
 
 
     private ChartViewModel chartViewModel;
+    private Boolean cny = false;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -67,10 +69,14 @@ public class ChartFragment extends Fragment {
             public void onClick(View v) {
                 // Perform action on clicks
                 if (hkd.isChecked()) {
-                    Toast.makeText(getActivity(), "Convert to HKD ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "转换为港币", Toast.LENGTH_SHORT).show();
+                    cny = false;
                 } else {
-                    Toast.makeText(getActivity(), "Convert to RMB", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "转换为人民币", Toast.LENGTH_SHORT).show();
+                    cny = true;
                 }
+                Log.e("stingcheckbox", cny.toString());
+
             }
         });
 
@@ -90,75 +96,30 @@ public class ChartFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_LONG).show();
-                        //画kind图
-                        List<Data> dataList00 = DataOperator.ThisMonthKindCost(getActivity());
-                        List<PieEntry> entries00 = new ArrayList<>();
-                        for (int i = 0; i < dataList00.size(); i++) {
-                            entries00.add(new PieEntry(dataList00.get(i).costs, dataList00.get(i).method));
-                        }
-                        showPieChart(entries00, pieChart1, getResources().getString(R.string.figure1));
-                        //画method图
-                        List<Data> dataList0 = DataOperator.ThisMonthMethodCost(getActivity());
-                        List<PieEntry> entries0 = new ArrayList<>();
-                        for (int i = 0; i < dataList0.size(); i++) {
-                            entries0.add(new PieEntry(dataList0.get(i).costs, dataList0.get(i).method));
-                        }
-                        showPieChart(entries0, pieChart2, getResources().getString(R.string.figure2));
+                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_SHORT).show();
+                        List<List> datalist;
+                        datalist = setnumber();
+                        Log.e("stingpie", cny.toString());
+                        showPieChart((List<PieEntry>) datalist.get(0).get(0), pieChart1, getResources().getString(R.string.figure1));
+                        showPieChart((List<PieEntry>) datalist.get(1).get(0), pieChart2, getResources().getString(R.string.figure2));
                         break;
                     case 1:
-                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_LONG).show();
-
-                        List<Data> dataList10 = DataOperator.TodayKindCost(getActivity());
-                        List<PieEntry> entries10 = new ArrayList<>();
-                        for (int i = 0; i < dataList10.size(); i++) {
-                            entries10.add(new PieEntry(dataList10.get(i).costs, dataList10.get(i).method));
-                        }
-                        showPieChart(entries10, pieChart1, getResources().getString(R.string.figure1));
-
-                        List<Data> dataList1 = DataOperator.TodayMethodCost(getActivity());
-                        List<PieEntry> entries1 = new ArrayList<>();
-                        for (int i = 0; i < dataList1.size(); i++) {
-                            entries1.add(new PieEntry(dataList1.get(i).costs, dataList1.get(i).method));
-                        }
-                        showPieChart(entries1, pieChart2, getResources().getString(R.string.figure2));
-
+                        datalist = setnumber();
+                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_SHORT).show();
+                        showPieChart((List<PieEntry>) datalist.get(0).get(1), pieChart1, getResources().getString(R.string.figure1));
+                        showPieChart((List<PieEntry>) datalist.get(1).get(1), pieChart2, getResources().getString(R.string.figure2));
                         break;
                     case 2:
-                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_LONG).show();
-
-                        List<Data> dataList20 = DataOperator.TMonthsKindCost(getActivity());
-                        List<PieEntry> entries20 = new ArrayList<>();
-                        for (int i = 0; i < dataList20.size(); i++) {
-                            entries20.add(new PieEntry(dataList20.get(i).costs, dataList20.get(i).method));
-                        }
-                        showPieChart(entries20, pieChart1, getResources().getString(R.string.figure1));
-
-                        List<Data> dataList2 = DataOperator.TMonthsMethodCost(getActivity());
-                        List<PieEntry> entries2 = new ArrayList<>();
-                        for (int i = 0; i < dataList2.size(); i++) {
-                            entries2.add(new PieEntry(dataList2.get(i).costs, dataList2.get(i).method));
-                        }
-                        showPieChart(entries2, pieChart2, getResources().getString(R.string.figure2));
-
+                        datalist = setnumber();
+                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_SHORT).show();
+                        showPieChart((List<PieEntry>) datalist.get(0).get(2), pieChart1, getResources().getString(R.string.figure1));
+                        showPieChart((List<PieEntry>) datalist.get(1).get(2), pieChart2, getResources().getString(R.string.figure2));
                         break;
                     case 3:
-                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_LONG).show();;
-
-                        List<Data> dataList30 = DataOperator.YearKindCost(getActivity());
-                        List<PieEntry> entries30 = new ArrayList<>();
-                        for (int i = 0; i < dataList30.size(); i++) {
-                            entries30.add(new PieEntry(dataList30.get(i).costs, dataList30.get(i).method));
-                        }
-                        showPieChart(entries30, pieChart1, getResources().getString(R.string.figure1));
-
-                        List<Data> dataList3 = DataOperator.YearMethodCost(getActivity());
-                        List<PieEntry> entries3 = new ArrayList<>();
-                        for (int i = 0; i < dataList3.size(); i++) {
-                            entries3.add(new PieEntry(dataList3.get(i).costs, dataList3.get(i).method));
-                        }
-                        showPieChart(entries3, pieChart2, getResources().getString(R.string.figure2));
-
+                        datalist = setnumber();
+                        Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_SHORT).show();;
+                        showPieChart((List<PieEntry>) datalist.get(0).get(3), pieChart1, getResources().getString(R.string.figure1));
+                        showPieChart((List<PieEntry>) datalist.get(1).get(3), pieChart2, getResources().getString(R.string.figure2));
                         break;
                 }
             }
@@ -178,8 +139,8 @@ public class ChartFragment extends Fragment {
 
         //添加色彩数据
         ArrayList<Integer> colors = new ArrayList<>();
-        ArrayList<Integer> colorList = new ArrayList<>(Arrays.asList(0xff6633ff, 0xffff3333,
-                0xff333399, 0xff33cc66, 0xff9933cc, 0xff330000));
+        ArrayList<Integer> colorList = new ArrayList<>(Arrays.asList(0xff330000, 0xffff3333,
+                0xff333399, 0xff33cc66, 0xff9933cc, 0xff6633ff));
         for (int i = 0; i < entries.size(); i++) {
             colors.add(colorList.get(i));
         }
@@ -226,5 +187,99 @@ public class ChartFragment extends Fragment {
 
     }
 
+    private List<List> setnumber() {
+        double f = Data.rate;
+        List<PieEntry> entries00 = new ArrayList<>();
+        List<PieEntry> entries0 = new ArrayList<>();
+        List<PieEntry> entries10 = new ArrayList<>();
+        List<PieEntry> entries1 = new ArrayList<>();
+        List<PieEntry> entries20 = new ArrayList<>();
+        List<PieEntry> entries2 = new ArrayList<>();
+        List<PieEntry> entries30 = new ArrayList<>();
+        List<PieEntry> entries3 = new ArrayList<>();
+        List<Data> cnycost00 = DataOperator.ThisMonthKindCost(getActivity());
+        List<Data> cnycost0 = DataOperator.ThisMonthMethodCost(getActivity());
+        List<Data> cnycost10 = DataOperator.TodayKindCost(getActivity());
+        List<Data> cnycost1 = DataOperator.TodayMethodCost(getActivity());
+        List<Data> cnycost20 = DataOperator.TMonthsKindCost(getActivity());
+        List<Data> cnycost2 = DataOperator.TMonthsMethodCost(getActivity());
+        List<Data> cnycost30 = DataOperator.YearKindCost(getActivity());
+        List<Data> cnycost3 = DataOperator.YearMethodCost(getActivity());
+        if (cny){
 
+            for (int i = 0; i < cnycost00.size(); i++) {
+                entries00.add(new PieEntry((int)(cnycost00.get(i).costs/f), cnycost00.get(i).method));
+            }
+            for (int i = 0; i < cnycost0.size(); i++) {
+                entries0.add(new PieEntry((int)(cnycost0.get(i).costs/f), cnycost0.get(i).method));
+            }
+
+            for (int i = 0; i < cnycost10.size(); i++) {
+                entries10.add(new PieEntry((int)(cnycost10.get(i).costs/f), cnycost10.get(i).method));
+            }
+            for (int i = 0; i < cnycost1.size(); i++) {
+                entries1.add(new PieEntry((int)(cnycost1.get(i).costs/f), cnycost1.get(i).method));
+            }
+
+            for (int i = 0; i < cnycost20.size(); i++) {
+                entries20.add(new PieEntry((int)(cnycost20.get(i).costs/f), cnycost20.get(i).method));
+            }
+            for (int i = 0; i < cnycost2.size(); i++) {
+                entries2.add(new PieEntry((int)(cnycost2.get(i).costs/f), cnycost2.get(i).method));
+            }
+
+            for (int i = 0; i < cnycost30.size(); i++) {
+                entries30.add(new PieEntry((int)(cnycost30.get(i).costs/f), cnycost30.get(i).method));
+            }
+            for (int i = 0; i < cnycost3.size(); i++) {
+                entries3.add(new PieEntry((int)(cnycost3.get(i).costs/f), cnycost3.get(i).method));
+            }
+        }
+        else {
+            for (int i = 0; i < cnycost00.size(); i++) {
+                entries00.add(new PieEntry(cnycost00.get(i).costs, cnycost00.get(i).method));
+            }
+            for (int i = 0; i < cnycost0.size(); i++) {
+                entries0.add(new PieEntry(cnycost0.get(i).costs, cnycost0.get(i).method));
+            }
+
+            for (int i = 0; i < cnycost10.size(); i++) {
+                entries10.add(new PieEntry(cnycost10.get(i).costs, cnycost10.get(i).method));
+            }
+            for (int i = 0; i < cnycost1.size(); i++) {
+                entries1.add(new PieEntry(cnycost1.get(i).costs, cnycost1.get(i).method));
+            }
+
+            for (int i = 0; i < cnycost20.size(); i++) {
+                entries20.add(new PieEntry(cnycost20.get(i).costs, cnycost20.get(i).method));
+            }
+            for (int i = 0; i < cnycost2.size(); i++) {
+                entries2.add(new PieEntry(cnycost2.get(i).costs, cnycost2.get(i).method));
+            }
+
+            for (int i = 0; i < cnycost30.size(); i++) {
+                entries30.add(new PieEntry(cnycost30.get(i).costs, cnycost30.get(i).method));
+            }
+            for (int i = 0; i < cnycost3.size(); i++) {
+                entries3.add(new PieEntry(cnycost3.get(i).costs, cnycost3.get(i).method));
+            }
+        }
+        Log.e("stingsetnumber", cny.toString());
+        List<List> list1 = new ArrayList<>();
+        list1.add(entries00);
+        list1.add(entries10);
+        list1.add(entries20);
+        list1.add(entries30);
+
+        List<List> list2 = new ArrayList<>();
+        list2.add(entries0);
+        list2.add(entries1);
+        list2.add(entries2);
+        list2.add(entries3);
+
+        List<List> listpack = new ArrayList<>();
+        listpack.add(list1);
+        listpack.add(list2);
+        return listpack;
+    }
 }
