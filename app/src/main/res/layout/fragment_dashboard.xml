@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg1"
+    android:background="@drawable/bg2"
     android:orientation="vertical"
     android:padding="10dp"
 
@@ -36,7 +36,7 @@
             android:layout_marginRight="120dp"
             android:text="@string/Date"
             android:textSize="18sp"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             app:layout_constraintRight_toLeftOf="@+id/hkd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@+id/Date_text"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             />
 
         <TextView
@@ -60,7 +60,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#000000"/>
 
         <Switch
             android:id="@+id/ai_switch"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:drawSelectorOnTop="true"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         />
 
     <TextView
@@ -89,7 +89,7 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:text="Number"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="50dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="102dp" />
@@ -107,7 +107,7 @@
             android:text="@string/XR"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/rate_num"
@@ -117,7 +117,7 @@
             android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/in"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,7 +146,7 @@
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
 
              />
 
@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/out"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
@@ -172,7 +172,7 @@
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
