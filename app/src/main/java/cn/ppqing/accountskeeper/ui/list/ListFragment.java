@@ -140,7 +140,7 @@ public class ListFragment extends Fragment {
                     break;
                 case R.id.radio_large_to_small:
                     dataSortL2S = DataOperator.readFromDB(getContext());
-                    Collections.sort(dataSortS2L, new Comparator<Data>() {
+                    Collections.sort(dataSortL2S, new Comparator<Data>() {
                         @Override
                         public int compare(Data o1, Data o2) {
                             if (o1.costs > o2.costs) {
