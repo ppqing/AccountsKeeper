@@ -22,7 +22,7 @@ import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 
-
+import java.lang.Thread;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,7 +33,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
+import androidx.navigation.NavArgument;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -78,8 +78,16 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
         mConnMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         loadRate();
-        Log.v("Get","x"+rec.getText());
+        DashboardFragment fra = new DashboardFragment();
+        Bundle b = new Bundle();
+        b.putString("test","x");
+        //NavController controller = Navigation.findNavController(this,R.id.navigation_dashboard);
+        //NavGraph graph = controller.getGraph();
+        //NavArgument aru = new NavArgument().Builder().setDefaultValue("x").build();
+        //fra.setArguments(b);
 
+        //Data.rate=Double.parseDouble(rec.getText().toString());
+               // Log.e("rate:",String.valueOf(Data.rate));
     }
     //menu set
     @Override
@@ -135,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
+
+
     class DownloadRateTask extends AsyncTask<String, Void, String> {
         public AsyncResponse asyncResponse;
         public void setOnAsyncResponse(AsyncResponse asyncResponse)
@@ -210,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
                     Log.v("rmb:        ",mapString);
                     rateString = rateReader.getString("inverseRate");
                     //Data.setA(rateString);
+
+                   // FragmentManager fm = getSupportFragmentManager();
                     rec.setText(data);
                     asyncResponse.onDataReceivedSuccess("CNY:"+rateString);
                 }catch(JSONException e){

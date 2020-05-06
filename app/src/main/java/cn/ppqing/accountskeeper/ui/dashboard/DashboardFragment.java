@@ -56,12 +56,14 @@ public class DashboardFragment extends Fragment {
         out = root.findViewById(R.id.out);
         num = root.findViewById(R.id.number);
         CNY = root.findViewById(R.id.ai_switch);
-        Bundle bundle = this.getArguments();
+        Bundle bundle = getArguments();
         spinner_date = root.findViewById(R.id.times);
         times = getResources().getStringArray(R.array.time_array);
         rate_num = root.findViewById(R.id.rate_num);
         LinearLayout l = root.findViewById(R.id.dash_layout);
-        l.getBackground().setAlpha(200);
+
+       // Log.e("test","X"+bundle.getString("test"));
+        //l.getBackground().setAlpha(200);
         //setnumber();
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, times);
         spinner_date.setAdapter(adapter1);

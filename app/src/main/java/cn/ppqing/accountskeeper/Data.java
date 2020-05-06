@@ -41,6 +41,7 @@ public class Data {
         return formatter.format(date);
 }
 
+
    /* public void setDate(Date d){
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
         this.date = dateformat.format(d);
