@@ -69,5 +69,9 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="title_activity_bills_main">Bills</string>
+    <string name="note">Note</string>
+    <string name="radio_default">default</string>
+    <string name="sort_small_to_large">small to large</string>
+    <string name="sort_large_to_small">large to small</string>
 
 </resources>

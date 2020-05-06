@@ -70,4 +70,8 @@
     <string name="edit">编辑</string>
     <string name="delete">删除</string>
     <string name="title_activity_bills_main">账单</string>
+    <string name="note">备注</string>
+    <string name="radio_default">默认</string>
+    <string name="sort_small_to_large">从小到大</string>
+    <string name="sort_large_to_small">从大到小</string>
 </resources>
