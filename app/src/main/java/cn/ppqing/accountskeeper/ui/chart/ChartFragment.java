@@ -34,8 +34,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cn.ppqing.accountskeeper.Data;
@@ -75,7 +78,6 @@ public class ChartFragment extends Fragment {
                     Toast.makeText(getActivity(), "转换为人民币", Toast.LENGTH_SHORT).show();
                     cny = true;
                 }
-                Log.e("stingcheckbox", cny.toString());
 
             }
         });
@@ -99,7 +101,6 @@ public class ChartFragment extends Fragment {
                         Toast.makeText(getActivity(), "统计" + dates[position] + "消费", Toast.LENGTH_SHORT).show();
                         List<List> datalist;
                         datalist = setnumber();
-                        Log.e("stingpie", cny.toString());
                         showPieChart((List<PieEntry>) datalist.get(0).get(0), pieChart1, getResources().getString(R.string.figure1));
                         showPieChart((List<PieEntry>) datalist.get(1).get(0), pieChart2, getResources().getString(R.string.figure2));
                         break;
@@ -139,8 +140,9 @@ public class ChartFragment extends Fragment {
 
         //添加色彩数据
         ArrayList<Integer> colors = new ArrayList<>();
-        ArrayList<Integer> colorList = new ArrayList<>(Arrays.asList(0xff330000, 0xffff3333,
-                0xff333399, 0xff33cc66, 0xff9933cc, 0xff6633ff));
+        ArrayList<Integer> colorList = new ArrayList<>(Arrays.asList(0xffff3333,
+                0xff333399, 0xff33cc66, 0xff9933cc, 0xff6633ff, 0xFFFF00FF,
+                0xFF800000, 0xFF808000, 0xFF000080, 0xFF008080, 0xFFADD8E6));
         for (int i = 0; i < entries.size(); i++) {
             colors.add(colorList.get(i));
         }
@@ -282,4 +284,7 @@ public class ChartFragment extends Fragment {
         listpack.add(list2);
         return listpack;
     }
+
 }
+
+
