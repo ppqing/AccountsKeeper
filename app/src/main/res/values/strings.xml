@@ -27,7 +27,7 @@
     <string name="Cost">Amount of money</string>
     <string name="unchecked">You have not selected type of currency.</string>
     <string name="in">Income</string>
-    <string name="out">Outcome</string>
+    <string name="out">Expenditure</string>
     <string-array name="Bill_type">
         <item>Diet</item>
         <item>Conduct financial transactions</item>

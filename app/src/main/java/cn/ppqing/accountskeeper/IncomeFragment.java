@@ -169,6 +169,9 @@ public class IncomeFragment extends Fragment {
                     int cos = Integer.parseInt(cos_num.getText().toString());
                     re= remarks_Text.getText().toString();
                     String d = date.getText().toString();
+                    if(CNY.isChecked()){
+                        cos=(int)(cos/Data.rate);
+                    }
                     Data input = new Data(cos,get_type,get_method,d,re);
                     Log.e("checked",input.date);
                     DataOperator.addToDB(getContext(),input);
